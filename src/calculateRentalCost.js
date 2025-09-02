@@ -10,15 +10,16 @@ function calculateRentalCost(days) {
   const MID_TERM_THRESHOLD = 3;
   const LONG_TERM_DISCOUNT = 50;
   const MID_TERM_DISCOUNT = 20;
-  let discount = 0;
 
   if (days >= LONG_TERM_THRESHOLD) {
-    discount = LONG_TERM_DISCOUNT;
-  } else if (days >= MID_TERM_THRESHOLD) {
-    discount = MID_TERM_DISCOUNT;
+    return days * baseDailyRate - LONG_TERM_DISCOUNT;
   }
 
-  return days * baseDailyRate - discount;
+  if (days >= MID_TERM_THRESHOLD) {
+    return days * baseDailyRate - MID_TERM_DISCOUNT;
+  }
+
+  return days * baseDailyRate;
 }
 
 module.exports = calculateRentalCost;
